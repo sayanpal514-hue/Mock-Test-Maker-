@@ -24,7 +24,9 @@ app.post('/generate-questions', async (req, res) => {
             return res.status(400).json({ error: 'Missing required parameters' });
         }
 
+        const randomSeed = Math.random().toString(36).substring(2, 15);
         const prompt = `Generate ${numQuestions} multiple choice questions on ${subject} with ${difficulty} difficulty level.
+To ensure variety, please use this random seed: ${randomSeed}. The questions MUST be unique and different from standard/common questions you usually generate.
 Each question should have exactly 4 options, 1 correct answer, and a short explanation.
 Return the response strictly in JSON format as an array of objects. Do not include any markdown formatting like \`\`\`json.
 Each object must have the following structure:
